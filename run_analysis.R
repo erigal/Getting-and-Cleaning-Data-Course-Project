@@ -1,7 +1,7 @@
 features     = read.table('UCI HAR Dataset/features.txt',header=FALSE);
 features.names <- features[,2];
 
-##Appropriately labels the data set with descriptive variable names.
+##Appropriately labels the data set with descriptive variable names
 features.names = gsub('-mean', 'Mean', features.names);
 features.names = gsub('-std', 'Std', features.names);
 features.names = gsub('[-()]', '', features.names);
@@ -45,3 +45,6 @@ colNames  = colnames(mergeData);
 newData<-aggregate(. ~subject + activityType, mergeData, mean)
 newData<-newData[order(newData$subject,newData$activityType),]
 write.table(newData, file = "tidydata.txt",row.name=FALSE,quote = FALSE, sep = '\t')
+
+##Window print of tidydata.txt dataset
+print(newData)
